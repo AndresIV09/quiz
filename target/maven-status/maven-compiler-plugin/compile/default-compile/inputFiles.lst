@@ -1,0 +1,17 @@
+C:\Java\quiz\src\main\java\com\quiz\app\controladores\AsociacionController.java
+C:\Java\quiz\src\main\java\com\quiz\app\controladores\ClubController.java
+C:\Java\quiz\src\main\java\com\quiz\app\controladores\CompeticionController.java
+C:\Java\quiz\src\main\java\com\quiz\app\controladores\EntrenadorController.java
+C:\Java\quiz\src\main\java\com\quiz\app\controladores\HomeController.java
+C:\Java\quiz\src\main\java\com\quiz\app\controladores\JugadorController.java
+C:\Java\quiz\src\main\java\com\quiz\app\models\Asociacion.java
+C:\Java\quiz\src\main\java\com\quiz\app\models\Club.java
+C:\Java\quiz\src\main\java\com\quiz\app\models\Competicion.java
+C:\Java\quiz\src\main\java\com\quiz\app\models\Entrenador.java
+C:\Java\quiz\src\main\java\com\quiz\app\models\Jugador.java
+C:\Java\quiz\src\main\java\com\quiz\app\QuizApplication.java
+C:\Java\quiz\src\main\java\com\quiz\app\repository\AsociacionRepository.java
+C:\Java\quiz\src\main\java\com\quiz\app\repository\ClubRepository.java
+C:\Java\quiz\src\main\java\com\quiz\app\repository\CompeticionRepository.java
+C:\Java\quiz\src\main\java\com\quiz\app\repository\EntrenadorRepository.java
+C:\Java\quiz\src\main\java\com\quiz\app\repository\JugadorRepository.java
