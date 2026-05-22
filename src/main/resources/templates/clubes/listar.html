@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clubes</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    :root {
+      --purple-dark:   #2d1b69;
+      --purple-mid:    #5b2d8e;
+      --purple-light:  #7c3aed;
+      --blue-dark:     #1e3a5f;
+      --blue-mid:      #1d4ed8;
+      --blue-light:    #3b82f6;
+      --accent:        #a78bfa;
+    }
+    body { background-color: #f0eeff !important; }
+    .navbar.bg-dark { background: linear-gradient(90deg, var(--purple-dark), var(--blue-dark)) !important; }
+    .navbar-brand, .nav-link { color: #e2d9ff !important; }
+    .nav-link:hover { color: #ffffff !important; }
+    .btn-outline-warning { border-color: var(--accent); color: var(--accent); }
+    .btn-outline-warning:hover { background-color: var(--accent); color: #fff; }
+
+    /* Hero section */
+    .hero { background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-mid) 50%, var(--blue-dark) 100%) !important; }
+
+    /* Stat cards */
+    .card-clubes    { background: linear-gradient(135deg, #5b2d8e, #7c3aed) !important; }
+    .card-jugadores { background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important; }
+    .card-entrena   { background: linear-gradient(135deg, #7c3aed, #3b82f6) !important; }
+    .card-asoc      { background: linear-gradient(135deg, #1d4ed8, #5b2d8e) !important; }
+    .card-comp      { background: linear-gradient(135deg, #a78bfa, #5b2d8e) !important; }
+
+    /* Quick action buttons on index */
+    .btn-primary    { background-color: var(--blue-mid)   !important; border-color: var(--blue-mid)   !important; }
+    .btn-primary:hover { background-color: var(--blue-dark) !important; border-color: var(--blue-dark) !important; }
+    .btn-danger     { background-color: var(--purple-mid)  !important; border-color: var(--purple-mid)  !important; }
+    .btn-danger:hover { background-color: var(--purple-dark) !important; border-color: var(--purple-dark) !important; }
+    .btn-info       { background-color: #6366f1 !important; border-color: #6366f1 !important; color: #fff !important; }
+    .btn-info:hover { background-color: #4f46e5 !important; border-color: #4f46e5 !important; }
+    .btn-success    { background-color: #4338ca !important; border-color: #4338ca !important; }
+    .btn-success:hover { background-color: #3730a3 !important; border-color: #3730a3 !important; }
+    .btn-warning    { background-color: var(--accent) !important; border-color: var(--accent) !important; color: #fff !important; }
+    .btn-warning:hover { background-color: #7c3aed !important; border-color: #7c3aed !important; }
+
+    /* Outline buttons */
+    .btn-outline-primary  { color: var(--blue-mid)   !important; border-color: var(--blue-mid)   !important; }
+    .btn-outline-primary:hover  { background-color: var(--blue-mid)   !important; color: #fff !important; }
+    .btn-outline-secondary { color: #6d5fb0 !important; border-color: #6d5fb0 !important; }
+    .btn-outline-secondary:hover { background-color: #6d5fb0 !important; color: #fff !important; }
+    .btn-outline-danger   { color: var(--purple-light) !important; border-color: var(--purple-light) !important; }
+    .btn-outline-danger:hover   { background-color: var(--purple-light) !important; color: #fff !important; }
+
+    /* Cards and tables */
+    .card { border: none !important; }
+    .card-header.bg-primary { background: linear-gradient(135deg, var(--blue-mid), var(--purple-light)) !important; }
+    .card-header.bg-success { background: linear-gradient(135deg, var(--purple-mid), var(--blue-mid)) !important; }
+    .card-header.bg-info    { background: linear-gradient(135deg, var(--blue-light), var(--purple-light)) !important; color: #fff !important; }
+    .card-header.bg-warning { background: linear-gradient(135deg, var(--accent), var(--purple-mid)) !important; color: #fff !important; }
+    .table thead.table-dark, thead.table-dark th { background-color: var(--purple-dark) !important; }
+
+    /* Badges */
+    .badge.bg-primary  { background-color: var(--blue-mid)   !important; }
+    .badge.bg-success  { background-color: var(--purple-mid)  !important; }
+    .badge.bg-info     { background-color: #6366f1 !important; color: #fff !important; }
+    .badge.bg-warning  { background-color: var(--accent) !important; color: #fff !important; }
+    .badge.bg-secondary { background-color: #6d5fb0 !important; }
+    .badge.bg-danger   { background-color: var(--purple-light) !important; }
+
+    /* Alerts */
+    .alert-success { background-color: #ede9fe !important; border-color: var(--accent) !important; color: var(--purple-dark) !important; }
+    .alert-danger  { background-color: #f0e6ff !important; border-color: var(--purple-light) !important; color: var(--purple-dark) !important; }
+
+    /* Footer */
+    footer.bg-dark { background: linear-gradient(90deg, var(--purple-dark), var(--blue-dark)) !important; }
+
+    /* Detail cards */
+    .card.border-primary { border-color: var(--blue-light) !important; }
+    .card-header.bg-primary.bg-opacity-10 { background-color: #dbeafe !important; color: var(--blue-dark) !important; }
+
+    /* Form focus */
+    .form-control:focus, .form-select:focus {
+      border-color: var(--purple-light) !important;
+      box-shadow: 0 0 0 0.25rem rgba(124, 58, 237, 0.25) !important;
+    }
+
+    /* Links */
+    a:not(.btn):not(.nav-link):not(.navbar-brand) { color: var(--purple-light); }
+    a:not(.btn):not(.nav-link):not(.navbar-brand):hover { color: var(--blue-mid); }
+
+    /* Table row hover */
+    .table-hover tbody tr:hover { background-color: #ede9fe !important; }
+
+    /* Headings with text-primary */
+    .text-primary { color: var(--blue-mid) !important; }
+    h2 .text-primary, h2.text-primary { color: var(--purple-light) !important; }
+  </style>
+</head>
+<body class="bg-light">
+
+  <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+
+  <div class="container my-4">
+
+    <!-- Encabezado -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h2 class="fw-bold mb-0"><i class="bi bi-shield-fill text-primary me-2"></i>Clubes</h2>
+        <small class="text-muted">Gestión de clubes de fútbol</small>
+      </div>
+      <a th:href="@{/clubes/nuevo}" class="btn btn-primary">
+        <i class="bi bi-plus-circle me-1"></i>Nuevo Club
+      </a>
+    </div>
+
+    <!-- Alertas flash -->
+    <div th:if="${exito}" class="alert alert-success alert-dismissible fade show" role="alert">
+      <i class="bi bi-check-circle me-2"></i><span th:text="${exito}"></span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+      <i class="bi bi-exclamation-circle me-2"></i><span th:text="${error}"></span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <!-- Tabla -->
+    <div class="card shadow-sm border-0 rounded-3">
+      <div class="card-body p-0">
+        <div th:if="${clubes.isEmpty()}" class="text-center py-5 text-muted">
+          <i class="bi bi-shield display-3 mb-3 d-block"></i>
+          <p>No hay clubes registrados. <a th:href="@{/clubes/nuevo}">¡Agrega el primero!</a></p>
+        </div>
+
+        <div class="table-responsive" th:unless="${clubes.isEmpty()}">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="table-dark">
+              <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Ciudad</th>
+                <th>Año Fundación</th>
+                <th>Entrenador</th>
+                <th>Asociación</th>
+                <th>Jugadores</th>
+                <th>Competiciones</th>
+                <th class="text-center">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="c : ${clubes}">
+                <td class="text-muted small" th:text="${c.id}"></td>
+                <td class="fw-semibold" th:text="${c.nombre}"></td>
+                <td th:text="${c.ciudad}"></td>
+                <td th:text="${c.anoFundacion}"></td>
+                <td>
+                  <span th:if="${c.entrenador != null}"
+                        th:text="${c.entrenador.nombre + ' ' + c.entrenador.apellido}"
+                        class="badge bg-info text-dark"></span>
+                  <span th:unless="${c.entrenador != null}" class="text-muted small">—</span>
+                </td>
+                <td>
+                  <span th:if="${c.asociacion != null}"
+                        th:text="${c.asociacion.nombre}"
+                        class="badge bg-success"></span>
+                  <span th:unless="${c.asociacion != null}" class="text-muted small">—</span>
+                </td>
+                <td>
+                  <span class="badge bg-secondary" th:text="${c.jugadores != null ? c.jugadores.size() : 0}"></span>
+                </td>
+                <td>
+                  <span class="badge bg-warning text-dark" th:text="${c.competiciones != null ? c.competiciones.size() : 0}"></span>
+                </td>
+                <td class="text-center">
+                  <a th:href="@{/clubes/detalle/{id}(id=${c.id})}" class="btn btn-sm btn-outline-secondary me-1" title="Ver detalle">
+                    <i class="bi bi-eye"></i>
+                  </a>
+                  <a th:href="@{/clubes/editar/{id}(id=${c.id})}" class="btn btn-sm btn-outline-primary me-1" title="Editar">
+                    <i class="bi bi-pencil"></i>
+                  </a>
+                  <a th:href="@{/clubes/eliminar/{id}(id=${c.id})}"
+                     class="btn btn-sm btn-outline-danger"
+                     title="Eliminar"
+                     onclick="return confirm('¿Eliminar este club?')">
+                    <i class="bi bi-trash"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
